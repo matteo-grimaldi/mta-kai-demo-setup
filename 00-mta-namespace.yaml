@@ -1,0 +1,9 @@
+# MTA Namespace
+# Creates the openshift-mta namespace for MTA operator and components
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-mta
+  labels:
+    kubernetes.io/metadata.name: openshift-mta

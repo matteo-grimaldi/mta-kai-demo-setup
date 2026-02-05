@@ -1,0 +1,11 @@
+# MTA Operator Group
+# Configures the operator to watch the openshift-mta namespace
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-mta
+  namespace: openshift-mta
+spec:
+  targetNamespaces:
+    - openshift-mta

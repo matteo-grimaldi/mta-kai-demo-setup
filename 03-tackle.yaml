@@ -1,0 +1,31 @@
+# Tackle Custom Resource
+# Deploys the MTA Hub with KAI Solution Server enabled
+#
+# Prerequisites:
+# - MTA Operator must be installed
+# - kai-api-keys secret must exist (04-llm-api-key.yaml)
+#
+# This will create:
+# - MTA Hub UI and API
+# - KAI Solution Server (kai-api, kai-db, kai-importer)
+# - Keycloak for authentication
+---
+apiVersion: tackle.konveyor.io/v1alpha1
+kind: Tackle
+metadata:
+  name: tackle
+  namespace: openshift-mta
+spec:
+  # Enable authentication for MTA Hub UI
+  feature_auth_required: 'true'
+
+  # Enable KAI Solution Server for AI-powered code analysis
+  kai_solution_server_enabled: true
+
+  # LLM Provider (OpenAI-compatible API)
+  # Works with OpenShift AI MaaS, Azure OpenAI, OpenAI, etc.
+  kai_llm_provider: OpenAI
+
+  # Model name to use (must match your MaaS deployment)
+  # Examples: granite-3-2-8b-instruct, gpt-4, etc.
+  kai_llm_model: granite-3-2-8b-instruct

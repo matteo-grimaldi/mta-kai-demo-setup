@@ -1,0 +1,42 @@
+# MTA VSCode Extension Provider Settings Template
+#
+# This file configures the LLM provider for the MTA extension.
+# When using the KAI Solution Server, the extension connects to the server,
+# which then connects to your configured LLM (OpenShift AI MaaS, OpenAI, etc.)
+#
+# Instructions:
+# 1. Copy this file to: provider-settings.yaml
+# 2. Replace <YOUR_MTA_ROUTE> with your actual MTA Hub route
+#    Get it with: oc get route mta -n openshift-mta -o jsonpath='{.spec.host}'
+# 3. Replace <YOUR_API_KEY> with your OpenShift AI MaaS API key
+# 4. Update the model name if using a different model
+# 5. Move the &active anchor to the model configuration you want to use
+---
+environment:
+  # Global environment variables (optional)
+  # CA_BUNDLE: "" # Path to custom CA bundle if using self-signed certs
+  # ALLOW_INSECURE: "false" # Set to "true" to allow insecure connections (not recommended)
+
+# Model configurations
+# The &active anchor marks which configuration is currently active
+models:
+  # OpenShift AI MaaS + KAI Solution Server Configuration
+  # This is the recommended configuration for this setup
+  openshift-ai-granite-model: &active
+    environment:
+      # Your OpenShift AI MaaS API key
+      # This key is used by the extension to authenticate with the KAI Solution Server
+      # The server then uses the kai-api-keys secret to connect to the LLM
+      OPENAI_API_KEY: "<YOUR_API_KEY>"
+    # Use ChatOpenAI provider (works with OpenAI-compatible APIs, like OpenShift AI MaaS)
+    provider: "ChatOpenAI"
+    args:
+      # Model name (must match the model configured in 05-tackle.yaml)
+      model: "granite-3-2-8b-instruct"
+      # Configuration for the used llm
+      configuration:
+        baseURL: "<YOUR_MAAS_MODEL_API_URL>"
+
+# Active model configuration
+# The extension will use whichever model has the &active anchor
+active: *active
