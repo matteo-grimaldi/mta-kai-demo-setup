@@ -38,46 +38,46 @@ The VS Code extension communicates with both the LLM model and the KAI Solution 
 
 ```
                           ┌─────────────────────┐
-  41 +                    │   VS Code           │
-  42 +                    │   MTA Extension     │
-  43 +                    └──────┬──────────┬───┘
-  44 +                           │          │
-  45 +                 (Path 1)  │          │  (Path 2)
-  46 +        Solution Server ───┘          └─── Direct LLM Access
-  47 +                 HTTPS                       HTTPS
-  48 +                           │           │
-  49 +                           ▼           │
-  50 +         ┌──────────────────────────┐  │
-  51 +         │   OpenShift Cluster      │  │
-  52 +         │                          │  │
-   53 +        │  ┌──────────────────┐    │  │
-   54 +        │  │  MTA Hub         │    │  │
-   55 +        │  │  Route: /hub/    │    │  │
-   56 +        │  │  services/kai/api│    │  │
-   57 +        │  └────────┬─────────┘    │  │
-  58 +         │           │              │  │
-  59 +         │           ▼              │  │
-  60 +         │ ┌──────────────────┐     │  │
-  61 +         │ │ KAI Solution     │     │  │
-  62 +         │ │ Server           │     │  │
-  63 +         │ │ - kai-api        │     │  │
-  64 +         │ │ - kai-db         │     │  │
-  65 +         │ │ - kai-importer   │     │  │
-  66 +         │ └────────┬─────────┘     │  │
-  67 +         │          │               │  │
-  68 +         └──────────┼─────────────-─┘  │
-  69 +                    │                  │
-  70 +                    │ HTTPS            │
-  71 +                    │ (kai-api-keys)   │
-  72 +                    ▼                  ▼
-  73 +        ┌─────────────────────────────────────┐
-  74 +        │   LLM Provider                      │
-  75 +        │   - OpenShift AI MaaS               │
-  76 +        │   - OpenAI                          │
-  77 +        │   - Azure OpenAI                    │
-  78 +        │   - AWS Bedrock                     │
-  79 +        │   - Other OpenAI-compatible APIs    │
-  80 +        └─────────────────────────────────────┘
+                          │   VS Code           │
+                          │   MTA Extension     │
+                          └──────┬──────────┬───┘
+                                 │          │
+                       (Path 1)  │          │  (Path 2)
+              Solution Server ───┘          └─── Direct LLM Access
+                       HTTPS                       HTTPS
+                                 │           │
+                                 ▼           │
+               ┌──────────────────────────┐  │
+               │   OpenShift Cluster      │  │
+               │                          │  │
+               │  ┌──────────────────┐    │  │
+               │  │  MTA Hub         │    │  │
+               │  │  Route: /hub/    │    │  │
+               │  │  services/kai/api│    │  │
+               │  └────────┬─────────┘    │  │
+               │           │              │  │
+               │           ▼              │  │
+               │ ┌──────────────────┐     │  │
+               │ │ KAI Solution     │     │  │
+               │ │ Server           │     │  │
+               │ │ - kai-api        │     │  │
+               │ │ - kai-db         │     │  │
+               │ │ - kai-importer   │     │  │
+               │ └────────┬─────────┘     │  │
+               │          │               │  │
+               └──────────┼─────────────-─┘  │
+                          │                  │
+                          │ HTTPS            │
+                          │ (kai-api-keys)   │
+                          ▼                  ▼
+              ┌─────────────────────────────────────┐
+              │   LLM Provider                      │
+              │   - OpenShift AI MaaS               │
+              │   - OpenAI                          │
+              │   - Azure OpenAI                    │
+              │   - AWS Bedrock                     │
+              │   - Other OpenAI-compatible APIs    │
+              └─────────────────────────────────────┘
 ```
 
 **Authentication Flow:**
