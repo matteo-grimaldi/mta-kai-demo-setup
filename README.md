@@ -30,7 +30,8 @@ This setup connects three components:
 2. **KAI Solution Server** - AI component that processes code analysis requests
 3. **LLM Provider** - Large Language Model (via OpenShift AI MaaS, OpenAI, Azure, etc.)
 
-The VS Code extension communicates with both the LLM model and the KAI Solution Server, which in turn uses itself the configured LLM to provide intelligent code migration suggestions for future use.
+The VS Code extension communicates with both the LLM model and the KAI Solution Server, which in turn uses itself the configured LLM (can be a different one with respect to the one used by the VSCode MTA extension) to provide intelligent code migration suggestions for future use.
+The Solution Server augments previous patterns of how source code changed to resolve issues (also called solved examples) that were similar to those in the current file, and suggests a resolution that has a higher confidence level derived from previous solutions. After accepting a suggested code fix, the Solution Server works with the large language model (LLM) in its configuration to improve the hints about the issue that becomes part of the context. 
 
 ---
 
