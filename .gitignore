@@ -1,0 +1,18 @@
+# VSCode MTA extension generated files
+.vscode/mta-vscode-extension/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+*.iml
+
+# Temporary files
+*.tmp
+*.bak
+*.log
